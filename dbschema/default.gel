@@ -28,5 +28,12 @@ module default {
     # yay computed backlinks
     files := .<parent[is File];
     folders := .<parent[is Folder];
+
+    trigger only_one_root after insert, update for all do (
+      assert(
+        count((select Folder filter not exists .parent)) <= 1,
+        message := "Only one root folder is allowed"
+      )
+    );
   }
 }
