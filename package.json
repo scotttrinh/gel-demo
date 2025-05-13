@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "drizzle-orm": "^0.43.1",
     "gel": "^2",
     "next": "^15",
     "react": "^19.1.0",
@@ -15,6 +16,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.1",
     "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.0",
     "npm-run-all": "^4",
@@ -31,6 +33,7 @@
     "db:generate": "run-s --print-label db:generate:*",
     "db:generate:qb": "pnpm generate edgeql-js",
     "db:generate:queries": "pnpm generate queries",
+    "db:generate:drizzle": "pnpm drizzle-kit pull",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
