@@ -1,3 +1,32 @@
 module default {
+  # yay mixins/traits/typeclasses
+  abstract type Timestamped {
+    required createdAt: datetime {
+      default := (datetime_of_statement());
+      rewrite insert using (datetime_of_statement());
+    };
+    required updatedAt: datetime {
+      default := (datetime_of_statement());
+      rewrite update using (datetime_of_statement());
+    };
 
+    index on (.createdAt);
+    index on (.updatedAt);
+  }
+
+  type File extending Timestamped {
+    required name: str;
+    required size: int64;
+    required url: str;
+    required parent: Folder;
+  }
+
+  type Folder extending Timestamped {
+    required name: str;
+    parent: Folder;
+
+    # yay computed backlinks
+    files := .<parent[is File];
+    folders := .<parent[is Folder];
+  }
 }
