@@ -1,0 +1,9 @@
+watch = []
+
+[instance]
+server-version = "6.7"
+
+[hooks]
+[hooks.schema]
+[hooks.schema.update]
+after = "pnpm run db:generate"
