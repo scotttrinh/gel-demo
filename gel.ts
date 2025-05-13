@@ -3,6 +3,7 @@ import { createClient } from "gel";
 import * as schema from "@/drizzle/schema";
 import * as relations from "@/drizzle/relations";
 export { default as e } from "@/dbschema/edgeql-js";
+export type { Executor } from "gel";
 
 export const client = createClient();
 
