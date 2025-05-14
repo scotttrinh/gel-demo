@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  nextjs:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./dbschema:/app/dbschema
+    environment:
+      GEL_DSN: gel://gel:5656
+      GEL_CLIENT_SECURITY: insecure_dev_mode
+    depends_on:
+      - gel
+
+  gel:
+    image: geldata/gel:6.7
+    environment:
+      GEL_SERVER_SECURITY: insecure_dev_mode
+    ports:
+      - "5656:5656"
+    volumes:
+      - ./dbschema:/dbschema
